@@ -14,6 +14,7 @@ class CreateUserAcationLogsTable extends Migration
     public function up()
     {
         Schema::create('user_acation_logs', function (Blueprint $table) {
+          
             $table->increments('id');
 
 
@@ -26,7 +27,6 @@ class CreateUserAcationLogsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
 
             $table->foreign('book_id')->references('id')->on('books');
             // $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');

@@ -30,6 +30,24 @@ interface BookRepositoryInterface {
      */
     public function getLattestBooksAdded();
 
+
+   /**
+     * Returns book reservation status
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function getReservationStatus($id);
+
+
+    /**
+     * Returns book reservation status
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function getAvailableBooks();
+
     /**
      * Returns book's ISBN 
      *

@@ -46,10 +46,30 @@ interface UserLogRepositoryInterface {
     public function deleteLog($id);
 
     /**
-     * Returns log info with all users that are related to the given log id
+     * Returns log info for the user
      *
      * @param int $id
      * @return mixed
      */
-    public function logWithUserInfo($id);
+    public function getLogsByUser($id);
+
+     /**
+     * Returns log info for the book 
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getLogsByBook($id);
+
+     /**
+     * Returns log info by book status type
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getLogsByBookStatus($status_id);
+
+
+
+
 }

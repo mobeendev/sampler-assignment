@@ -15,6 +15,13 @@ class BookRepository implements BookRepositoryInterface {
         return Book::with('users')->where('id', $id)->get()->first()->toArray();
     }
 
+    public function getReservationStatus($id) {
+    }
+
+
+    public function getAvailableBooks() {
+    }
+
     public function create(array $data) {
       return Book::create($data);
     }

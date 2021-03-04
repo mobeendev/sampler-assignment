@@ -28,7 +28,7 @@ interface UserRepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function getCheckedInBooks($id);
+    public function getCheckedInBooks();
 
 
    /**
@@ -37,7 +37,16 @@ interface UserRepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function getCheckedoutBooks($id);
+    public function getCheckedoutBooks();
+
+
+     /**
+     * Return list of all the books returned/checkout by user
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function getOverDueBooks();
 
 
     /**
