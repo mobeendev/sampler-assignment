@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','dob','address'
     ];
 
     /**
@@ -46,9 +46,8 @@ class User extends Authenticatable implements JWTSubject {
         return [];
     }
 
-
-    public function logs() {
-        return $this->belongsToMany(Category::class);
+    public function books() {
+        return $this->belongsToMany(Book::class,'user_action_logs')->withPivot('date_issued', 'date_due_for_return','date_returned','fine_amount')->withTimestamps();
+;
     }
-
 }
