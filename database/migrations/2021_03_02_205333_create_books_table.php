@@ -22,13 +22,12 @@ class CreateBooksTable extends Migration
             $table->string('ISBN',10)->unique(); // - isbn (10 digits)
             
             $table->string('publisher', 255);   // - name (string with max length of 255 characters)
-            
-            $table->string('email', 255)->unique();    // - email (string with max length of 255 characters)
-       
+          
             $table->date('published_at'); // - published_at (Date in format YYYY-MM-DD)
 
+            $table->integer('price') ;// book price
 
-            $table->integer('status_id')->unsigned(); // book issue status (1,2)
+            $table->integer('status_id')->unsigned()->default(1); // book issue status (1,2)
 
             $table->foreign('status_id')->references('id')->on('status');
 

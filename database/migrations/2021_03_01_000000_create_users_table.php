@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email',255)->unique();    // - email (string with max length of 255 characters)
             $table->string('password');     // - password (min 8 characters, min 1 capital letter, 1 number)
             $table->date('dob');   // - date_of_birth (Date in format YYYY-MM-DD)
-            $table->string('address')->longText();    // - address of the user
+            $table->longText('address')->default(NULL);    // - address of the user
             $table->rememberToken();
             $table->timestamps();
         });
