@@ -12,7 +12,7 @@ class BookRepository implements BookRepositoryInterface {
     }
 
 
-    public function find() {
+    public function find($id) {
              return Book::find($id);
     }
     
@@ -27,7 +27,7 @@ class BookRepository implements BookRepositoryInterface {
         return Book::where('ISBN', $isbn)->get();
     }
 
-    public function getLattestBooksAdded($id) {
+    public function getLattestBooksAdded() {
         return Book::where('status', 1)
                ->orderByDesc('published_at')
                ->take(10)

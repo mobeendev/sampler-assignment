@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Interfaces\BookRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
-class BookController extends BaseController {
+class BooksController extends BaseController {
 
     private $bookRepo;
 
@@ -16,7 +17,7 @@ class BookController extends BaseController {
 
     public function index() {
 
-        $books = $this->bookRepository->all();
+        $books = $this->bookRepo->all();
 
         return $this->sendResponse('Books list retrieved successfully.', $books->toArray());
     }
@@ -32,11 +33,13 @@ class BookController extends BaseController {
         return $this->sendError('Book not found!');
     }
 
-    public function searchTitle($title) {
+    public function searchTitle() {
+
+        $title = Input::get('title');
 
         $book = $this->bookRepo->findByTitle($title);
 
-        if ($book != null) {
+        if ($book != null && !$book->isEmpty()) {
 
             return $this->sendResponse('Books retrieved successfully.', $book);
         }
@@ -48,7 +51,7 @@ class BookController extends BaseController {
 
         $book = $this->bookRepo->findByAuthor($author);
 
-        if ($book != null) {
+            if ($book != null && !$book->isEmpty()) {
 
             return $this->sendResponse('Books retrieved successfully.', $book);
         }
@@ -60,9 +63,9 @@ class BookController extends BaseController {
 
             $book = $this->bookRepo->findByISBN($isbn);
 
-            if ($book != null) {
+            if ($book != null && !$book->isEmpty()) {
 
-                return $this->sendResponse('Books retrieved successfully.', $book);
+                return $this->sendResponse('Book found successfully.', $book);
             }
             return $this->sendError('Book not found!');
         }

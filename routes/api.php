@@ -22,12 +22,14 @@ Route::prefix('books')->group(function($router) {
 
         Route::get('/', 'BooksController@index');
 
+        Route::get('/{id}', 'BooksController@show');
+
         Route::get('/lattest', 'BooksController@lattest');
 
 
         Route::prefix('search')->group(function($router) {
-            Route::get('/title/{title}', 'BooksController@searchTitle');
-            Route::get('/author/{author}', 'BooksController@searchAuthor');
+            Route::get('/title', 'BooksController@searchTitle');
+            Route::get('/author', 'BooksController@searchAuthor');
             Route::get('/isbn/{isbn}', 'BooksController@searchISBN');
         });
 
