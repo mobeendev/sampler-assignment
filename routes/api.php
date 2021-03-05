@@ -43,6 +43,21 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     });
 
 
+
+    Route::prefix('user/book')->group(function($router) {
+
+        Route::post('checkin', 'UserController@checkIn');
+        Route::post('checkout', 'UserController@checkOut');
+        // Route::put('checkout/{book}', 'ReserveBookController@update');
+
+        // Route::post('/', 'BooksController@store');
+
+
+        // Route::delete('/{book}', 'BooksController@delete');
+    });
+    
+
+
     Route::prefix('books')->group(function($router) {
 
         Route::get('/{book}', 'BooksController@show');

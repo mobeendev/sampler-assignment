@@ -29,13 +29,15 @@ class CreateUserAcationLogsTable extends Migration
             $table->foreign('book_id')->references('id')->on('books');
             // $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
 
-            $table->date('date_issued');  // - data_issued (Date in format YYYY-MM-DD)
+            $table->timestamp('date_issued')->default(DB::raw('CURRENT_TIMESTAMP(0)'));
 
-            $table->date('date_due_for_return'); // - data_due_for_return (Date in format YYYY-MM-DD)
+            // $table->date('date_issued')->default(DB::raw('CURRENT_TIMESTAMP'));  // - data_issued (Date in format YYYY-MM-DD)
 
-            $table->date('date_returned');  // - data_returned (Date in format YYYY-MM-DD)
+            $table->date('date_due_for_return')->nullable(true); ; // - data_due_for_return (Date in format YYYY-MM-DD)
 
-            $table->smallInteger('fine_amount');  // - fine_amount 
+            $table->date('date_returned')->nullable(true); ;  // - data_returned (Date in format YYYY-MM-DD)
+
+            $table->smallInteger('fine_amount')->nullable(true); ;  // - fine_amount 
 
             $table->timestamps();
         });

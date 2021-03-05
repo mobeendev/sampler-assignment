@@ -25,15 +25,8 @@ class UserRepository implements UserRepositoryInterface {
 
     public function checkInBook(User $user, array $data) {
 
-        $user->books()->detach();
+        return User::with('books');
 
-        $user->update($data);
-
-
-        if (isset($data['books']) && !empty($data['books'])) {
-            $user->books()->attach($data['books']);
-        }
-        return $user;
     }
 
     public function update(User $user, array $data) {

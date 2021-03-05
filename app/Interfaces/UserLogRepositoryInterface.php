@@ -3,6 +3,7 @@
 namespace App\Interfaces;
 
 use App\UserLog;
+use App\Book;
 
 interface UserLogRepositoryInterface {
 
@@ -27,7 +28,7 @@ interface UserLogRepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function checkInBook(array $data);
+    public function checkInBook(Book $book);
 
 
     /**
@@ -36,14 +37,7 @@ interface UserLogRepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function checkOutBook(array $data);
-
-    /**
-     * Deletes a user log record 
-     * @param int $id
-     * @return boolean
-     */
-    public function deleteLog($id);
+    public function checkOutBook(Book $book);
 
     /**
      * Returns log info for the user
@@ -60,16 +54,6 @@ interface UserLogRepositoryInterface {
      * @return mixed
      */
     public function getLogsByBook($id);
-
-     /**
-     * Returns log info by book status type
-     *
-     * @param int $id
-     * @return mixed
-     */
-    public function getLogsByBookStatus($status_id);
-
-
 
 
 }

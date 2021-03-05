@@ -36,7 +36,7 @@ class BookRepository implements BookRepositoryInterface {
 
 
     public function checkIsBookAvailable($id) {
-        return Book::where('status', 1)->first();
+        return Book::find($id)->where('status', 1)->first();
     }
 
 
