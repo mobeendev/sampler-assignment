@@ -32,6 +32,53 @@ class BookController extends BaseController {
         return $this->sendError('Book not found!');
     }
 
+    public function searchTitle($title) {
+
+        $book = $this->bookRepo->findByTitle($title);
+
+        if ($book != null) {
+
+            return $this->sendResponse('Books retrieved successfully.', $book);
+        }
+        return $this->sendError('Book not found!');
+    }
+
+    
+    public function searchAuthor($author) {
+
+        $book = $this->bookRepo->findByAuthor($author);
+
+        if ($book != null) {
+
+            return $this->sendResponse('Books retrieved successfully.', $book);
+        }
+        return $this->sendError('Book not found!');
+    }
+
+
+     public function searchISBN($isbn) {
+
+            $book = $this->bookRepo->findByISBN($isbn);
+
+            if ($book != null) {
+
+                return $this->sendResponse('Books retrieved successfully.', $book);
+            }
+            return $this->sendError('Book not found!');
+        }
+
+
+    public function lattest() {
+
+        $book = $this->bookRepo->getLattestBooksAdded($id);
+
+        if ($book != null) {
+
+            return $this->sendResponse('Books retrieved successfully.', $book);
+        }
+        return $this->sendError('Book not found!');
+    }
+
     public function store(Request $request) {
 
         $input = $request->all();

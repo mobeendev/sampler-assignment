@@ -22,6 +22,33 @@ interface BookRepositoryInterface {
     public function find($id);
 
 
+     /**
+     * Get the book by title
+     *
+     * @param string $title
+     * @return mixed
+     */
+    public function findByTitle($title);
+
+
+   /**
+     * Get the book by author
+     *
+     * @param string $author
+     * @return mixed
+     */
+    public function findByAuthor($author);
+
+
+    /**
+     * Returns book's ISBN 
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function findByISBN($isbn);
+
+
     /**
      * Returns lattest book list added in current week
      *
@@ -37,7 +64,7 @@ interface BookRepositoryInterface {
      * @param array $data
      * @return mixed
      */
-    public function getReservationStatus($id);
+    public function checkIsBookAvailable($id);
 
 
     /**
@@ -48,14 +75,7 @@ interface BookRepositoryInterface {
      */
     public function getAvailableBooks();
 
-    /**
-     * Returns book's ISBN 
-     *
-     * @param int $id
-     * @return mixed
-     */
-    public function getISBN($id);
-
+   
     /**
      * Add/Create a new Book with the payload
      *

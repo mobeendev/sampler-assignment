@@ -14,7 +14,7 @@ class CreateStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_status', function (Blueprint $table) {
+        Schema::create('status', function (Blueprint $table) {
             $table->increments('id');    // - id (auto incremented id)
             $table->string('type');   // - name (string with max length of 255 characters)
         });

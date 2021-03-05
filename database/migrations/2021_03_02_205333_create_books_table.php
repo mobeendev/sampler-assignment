@@ -28,9 +28,9 @@ class CreateBooksTable extends Migration
             $table->date('published_at'); // - published_at (Date in format YYYY-MM-DD)
 
 
-            $table->integer('status_id')->unsigned(); // book issue status (0,1,2)
+            $table->integer('status_id')->unsigned(); // book issue status (1,2)
 
-            $table->foreign('status_id')->references('id')->on('book_status');
+            $table->foreign('status_id')->references('id')->on('status');
 
             $table->timestamps();
 
