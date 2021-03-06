@@ -8,6 +8,8 @@ use App\User;
 use JWTAuth;
 use Validator;
 use Response;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
 
 class AuthController extends BaseController {
 
@@ -88,11 +90,11 @@ class AuthController extends BaseController {
     }
 
     public function logout() {
-        JWTAuth::invalidate();
-        return response([
-            'status' => 'success',
-            'msg' => 'Logged out Successfully.'
-                ], 200);
+        \Cookie::forget('token');
+        auth()->logout();
+        JWTAuth::invalidate(JWTAuth::parseToken());
+        return response()->json(['message' => 'Successfully logged out']);
+      
     }
 
 }
