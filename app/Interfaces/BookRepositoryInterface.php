@@ -31,15 +31,6 @@ interface BookRepositoryInterface {
     public function findByTitle($title);
 
 
-   /**
-     * Get the book by author
-     *
-     * @param string $author
-     * @return mixed
-     */
-    public function findByAuthor($author);
-
-
     /**
      * Returns book's ISBN 
      *

@@ -20,10 +20,7 @@ class BookRepository implements BookRepositoryInterface {
         return Book::where('title', $title)->get();
     }
 
-     public function findByAuthor($author) {
-        return Book::with('Authors')->where('name', '=', $author)->get();
-    }
-      public function findByISBN($isbn) {
+    public function findByISBN($isbn) {
         return Book::where('ISBN', $isbn)->get();
     }
 

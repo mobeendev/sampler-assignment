@@ -18,6 +18,9 @@ Route::prefix('auth')->group(function($router) {
  */
 
 
+
+// These are open APIs to view/search books
+
 Route::prefix('books')->group(function($router) {
 
         Route::get('/', 'BooksController@index');
@@ -42,34 +45,21 @@ Route::group(['middleware' => ['jwt.auth']], function() {
         Route::get('user', 'AuthController@user');
     });
 
-
-
+    // Checkin and Checkout Book
     Route::prefix('user/book')->group(function($router) {
-
         Route::post('checkin', 'UserController@checkIn');
         Route::post('checkout', 'UserController@checkOut');
-        // Route::put('checkout/{book}', 'ReserveBookController@update');
-
-        // Route::post('/', 'BooksController@store');
-
-
-        // Route::delete('/{book}', 'BooksController@delete');
     });
     
 
-
+    // Create Book
     Route::prefix('books')->group(function($router) {
 
-        Route::get('/{book}', 'BooksController@show');
+        Route::post('/create', 'BooksController@store');
         Route::put('/{book}', 'BooksController@update');
-
-        Route::post('/', 'BooksController@store');
-
 
         Route::delete('/{book}', 'BooksController@delete');
     });
-    
-  
 
     Route::get('logout', 'AuthController@logout');
 });

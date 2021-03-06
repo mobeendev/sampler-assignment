@@ -21,9 +21,9 @@ class CreateBooksTable extends Migration
 
             $table->string('ISBN',10)->unique(); // - isbn (10 digits)
             
-            $table->string('publisher', 255);   // - name (string with max length of 255 characters)
+            $table->string('publisher', 255)->nullable(true);   // - name (string with max length of 255 characters)
           
-            $table->date('published_at'); // - published_at (Date in format YYYY-MM-DD)
+            $table->date('published_at')->nullable(true); // - published_at (Date in format YYYY-MM-DD)
 
             $table->integer('price') ;// book price
 

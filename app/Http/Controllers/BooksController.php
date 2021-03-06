@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Interfaces\BookRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\FieldRequest;
 
 class BooksController extends BaseController {
 
@@ -46,19 +47,6 @@ class BooksController extends BaseController {
         return $this->sendError('Book not found!');
     }
 
-    
-    public function searchAuthor($author) {
-
-        $book = $this->bookRepo->findByAuthor($author);
-
-            if ($book != null && !$book->isEmpty()) {
-
-            return $this->sendResponse('Books retrieved successfully.', $book);
-        }
-        return $this->sendError('Book not found!');
-    }
-
-
      public function searchISBN($isbn) {
 
             $book = $this->bookRepo->findByISBN($isbn);
@@ -85,19 +73,22 @@ class BooksController extends BaseController {
     public function store(Request $request) {
 
         $input = $request->all();
-     
+      
         $validator = Validator::make($request->all(), [
-                    'name' => 'required|unique:categories|max:255',
-                    'price' => 'integer',
+                'title' => 'required|max:255',
+                'ISBN' => 'required|unique:books|max:10|check_isbn',
+                'price' => 'required|integer',               
+                'publisher' => 'string|max:255',
+                'published_at' => 'date_format:Y-m-d'
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Errors', $validator->errors());
+            return $this->sendError('Validation faild for following fields.', $validator->errors());
         }
 
         $book = $this->bookRepo->create($input);
 
-        return $this->sendResponse('Books created successfully.' , $book->toArray());
+        return $this->sendResponse('Books created successfully.' , $book);
     }
 
     public function update(Request $request, $id) {
