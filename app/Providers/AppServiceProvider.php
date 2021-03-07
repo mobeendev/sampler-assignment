@@ -22,6 +22,11 @@ class AppServiceProvider extends ServiceProvider {
             }
                 return false;
         });
+
+        Validator::extend('strong_password', function ($attribute, $value, $parameters, $validator) {
+            // Contain at least one uppercase/lowercase letters, one number and one special char
+            return preg_match('/^(?=.*[A-Z])(?=.*\d).+$/', (string)$value);
+        }, 'Password must contain atleast 1 capital letter and 1 number.');
     }
 
     /**

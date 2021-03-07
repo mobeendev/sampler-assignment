@@ -22,6 +22,7 @@ class CreateUserAcationLogsTable extends Migration
             $table->integer('user_id')->unsigned();
 
             $table->smallInteger('action');  
+         //   $table->smallInteger('action')->references('id')->on('status');  
 
             $table->foreign('user_id')->references('id')->on('users');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

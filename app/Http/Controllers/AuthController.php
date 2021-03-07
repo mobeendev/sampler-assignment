@@ -21,7 +21,7 @@ class AuthController extends BaseController {
         $validator = Validator::make($request->all(), [
                     'email' => 'required|string|email|max:255|unique:users',
                     'name' => 'required',
-                    'password' => 'required',
+                    'password' => 'required|min:8|strong_password',
                     'dob' => 'date_format:Y-m-d',
                     'address' => 'min:10|max:255'
         ]);
@@ -59,7 +59,7 @@ class AuthController extends BaseController {
         try {
             // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['success' => false, 'error' => 'We cant find an account with this credentials. Please make sure you entered the right information and you have verified your email address.'], 401);
+                return response()->json(['success' => false, 'error' => 'We cant find an account with this credentials. Please make sure you entered the right information.'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
