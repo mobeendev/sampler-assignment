@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Interfaces\UserLogRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Book;
-use JWTAuth;
 
 class UserController extends BaseController {
 
     private $userLogRepo;
+    private $userRepo;
 
-    public function __construct(UserLogRepositoryInterface $userLogRepository) {
+    public function __construct(UserLogRepositoryInterface $userLogRepository,UserRepositoryInterface $userRepository) {
         $this->userLogRepo = $userLogRepository;
+        $this->userRepo = $userRepository;
     }
 
     public function index() {
 
-        $books = $this->userLogRepo->all();
+         $data = $this->userRepo->all(); 
 
-        return $this->sendResponse('Booked books retrieved successfully.', $books->toArray());
+        return $this->sendResponse('Your selected books.' , $data);
     }
 
     public function checkIn(Request $request) {

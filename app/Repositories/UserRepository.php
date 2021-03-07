@@ -4,48 +4,47 @@ namespace App\Repositories;
 
 use App\Book;
 use App\User;
+use JWTAuth;
 use App\Interfaces\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface {
 
-    public function all() {
-        return Product::all();
+     /**
+     * Returns all user(s) list
+     *
+     * @return mixed
+     */
+    public function all(){ 
+
+          return User::with('books')->find(JWTAuth::user()->id);
     }
 
-    public function find($id) {
-        return User::find($id);
-    }
-
-    
-    public function create(array $data) {
-        
-        return User::create($data);
-    }
+    /**
+     * Get the user by id
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function find($id){}
 
 
-    public function checkInBook(User $user, array $data) {
-
-        return User::with('books');
-
-    }
-
-    public function update(User $user, array $data) {
- 
-        return $user;
+    /**
+     * Return list of all the books borrowed/checkin by user
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function getCheckedInBooks(){
+          return User::with('books')->find(JWTAuth::user()->id);
     }
 
 
-    public function getSingleBook($id) {
-        return User::with('books')->where('id', $id)->get()->first()->toArray();
-    }
-
-
-    public function getUserBooksList($id) {
-        return User::with('books')->where('id', $id)->get()->toArray();
-    }
-
-    public function delete($id) {
-        
-    }
+     /**
+     * Return list of all the books returned/checkout by user
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function getCheckedoutBooks(){}
 
 }

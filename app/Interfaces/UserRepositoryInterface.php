@@ -40,33 +40,6 @@ interface UserRepositoryInterface {
     public function getCheckedoutBooks();
 
 
-     /**
-     * Return list of all the books returned/checkout by user
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function getOverDueBooks();
-
-
-    /**
-     * Create new user
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function create(array $data);
-
-
-  
-    /**
-     * Delete user ifo
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function delete($id);
-
 
 
 
