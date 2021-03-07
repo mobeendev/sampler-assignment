@@ -10,7 +10,7 @@ class Book extends Model {
     protected $fillable = ['title', 'ISBN','publisher','published_at','price'];
 
     public function users() {
-        return $this->belongsToMany(User::class,'user_acation_logs')->withPivot('date_issued', 'date_due_for_return','date_returned','fine_amount')->withTimestamps();
+        return $this->belongsToMany(User::class,'user_acation_logs')->withPivot('action')->withTimestamps();
 
     }
 

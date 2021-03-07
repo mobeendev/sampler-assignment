@@ -8,7 +8,6 @@
 Route::prefix('auth')->group(function($router) {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');    
-    Route::post('logout', 'AuthController@logout');
 });
 
 
@@ -44,6 +43,8 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     Route::prefix('auth')->group(function($router) {
         Route::get('user', 'AuthController@user');
+        Route::post('logout', 'AuthController@logout');
+
     });
 
     // Checkin and Checkout Book
@@ -57,10 +58,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::prefix('books')->group(function($router) {
 
         Route::post('/create', 'BooksController@store');
-        Route::put('/{book}', 'BooksController@update');
-
         Route::delete('/{book}', 'BooksController@delete');
     });
 
-    Route::get('logout', 'AuthController@logout');
 });
